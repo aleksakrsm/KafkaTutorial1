@@ -22,8 +22,11 @@ class ConsumerDemoWithShutdown {
         props.put("value.deserializer", StringDeserializer.class.getName());
         props.put("group.id", "my-java-application");
         props.put("auto.offset.reset", "earliest");
+        props.put("auto.offset.reset", "earliest");
 //        props.put("auto.offset.reset", "latest");
 //        props.put("auto.offset.reset", "none");
+
+        props.put("group.instance.id", System.getenv("GROUP_INSTANCE_ID"));//static group membership
 
         var topic = "my_new_topic";
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
